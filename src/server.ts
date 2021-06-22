@@ -1,5 +1,12 @@
-import express from "express";
+import express from "express"
+import 'reflect-metadata'
+import "./database"
+import { router } from "./routes"
 
-const app = express();
+const app = express()
 
-app.listen(3000, () => console.log("Server is run in port 3000"));
+app.use(express.json())
+
+app.use(router)
+
+app.listen(3000, () => console.log("Server is run in port 3000"))
