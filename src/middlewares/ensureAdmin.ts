@@ -1,13 +1,17 @@
-import {Request, Response, NextFunction } from 'express'
+import { Request, Response, NextFunction } from "express";
 
-export const ensureAdmin = (req: Request, resp: Response, next: NextFunction) => {
+export const ensureAdmin = (
+  req: Request,
+  resp: Response,
+  next: NextFunction
+) => {
+  const admin = true;
 
-  const admin = true
+  const validateAdmin = admin
+    ? next()
+    : resp.status(401).json({
+        error: "Unauthorized",
+      });
 
-  const validateAdmin = admin ? next() : resp.status(401).json({
-    error: 'Unauthorized'
-  })
-
-  return validateAdmin
-
-}
+  return validateAdmin;
+};
